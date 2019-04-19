@@ -65,7 +65,10 @@ NEntries = input_tree.GetEntriesFast()
 
 n_infile = np.float(NEntries)/np.float(N_subfiles)
 n_infile = np.int(n_infile)
-n_lastfile = np.int(NEntries - n_infile*N_subfiles)
+n_lastfile = np.int(NEntries - n_infile*(N_subfiles-1))
+
+print n_infile, n_lastfile
+
 
 file_counter = 0
 start_counter = 0
@@ -75,20 +78,17 @@ for jf in xrange(N_subfiles):
 	if (jf < (N_subfiles - 1)):
 		for je in xrange( n_infile ):
 			input_tree.GetEntry( start_counter + je )
-			if (je < n_infile-1): 
-				newtree.Fill()
-			else:
+			newtree.Fill()
+			if (je == n_infile-1): 
 				newfile.Write()
 		file_counter+=1
 		start_counter+=n_infile
 	else:
 		for je in xrange( n_lastfile ):
 			input_tree.GetEntry( start_counter + je )
-			if (je < n_lastfile-1): 
-				newtree.Fill()
-			else:
+			newtree.Fill()
+			if (je == n_lastfile-1):  
 				newfile.Write()
-
 
    
    
