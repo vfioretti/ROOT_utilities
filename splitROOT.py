@@ -67,8 +67,6 @@ n_infile = np.float(NEntries)/np.float(N_subfiles)
 n_infile = np.int(n_infile)
 n_lastfile = np.int(NEntries - n_infile*(N_subfiles-1))
 
-print n_infile, n_lastfile
-
 
 file_counter = 0
 start_counter = 0
